@@ -10,3 +10,6 @@ token.json
 # Crap
 _notes/
 __pycache__/
+
+# Output Directory
+feeds/
