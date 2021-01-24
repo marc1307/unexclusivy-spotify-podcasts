@@ -1,0 +1,11 @@
+{
+    "api": {
+        "client_id": "change_me",
+        "client_secret": "change_me"
+    },
+    "export": "feeds",
+    "shows": [
+        "3RWaVT0v1SK6iALTtUK8bQ",
+        "7BTOsF2boKmlYr76BelijW"
+    ]
+}
