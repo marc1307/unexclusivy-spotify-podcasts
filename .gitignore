@@ -1,0 +1,12 @@
+# Python Env
+env/
+# vscode
+.vscode
+
+# Authentication
+config.json
+token.json
+
+# Crap
+_notes/
+__pycache__/
