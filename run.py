@@ -29,11 +29,15 @@ def getShows():
             print(ep["name"])
             p.episodes += [
                 Episode(
+                    id=ep["uri"],
+                    link=ep["external_urls"]["spotify"],
                     title=ep["name"],
-                    media=Media(spotify.getMediaUrl(ep["audio_preview_url"]), type="audio/mpeg"),
                     summary=ep["description"],
+                    subtitle=ep["description"],
+                    media=Media(spotify.getMediaUrl(ep["audio_preview_url"]), type="audio/mpeg", duration=datetime.timedelta(milliseconds=ep["duration_ms"])),
+                    image=ep["images"][0]["url"],
                     explicit=ep["explicit"],
-                    # publication_date=datetime.date(ep["release_date"]), Meh... tidi               
+                    publication_date=datetime.datetime.strptime(ep["release_date"], "%Y-%m-%d").replace(tzinfo=datetime.timezone.utc)
                 )
             ]
 
