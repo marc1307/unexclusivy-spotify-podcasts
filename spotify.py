@@ -22,9 +22,7 @@ def getShow(showId):
     if response.status_code == 200:
         return json.loads(response.text)
     else:
-        if config.debug:
-            print("DEBUG:" + str(headers))
-        exit("Meh... ({})".format(response.status_code))
+        exit("Meh... {} ({})".format(response.status_code, json.loads(response.text)["error"]["message"]))
 
 def getShowEpisodes(showId):
     cfg = config.readCfg()
@@ -36,7 +34,7 @@ def getShowEpisodes(showId):
     if response.status_code == 200:
         return json.loads(response.text)
     else:
-        exit("Meh... ({})".format(response.status_code))
+        exit("Meh... {} ({})".format(response.status_code, json.loads(response.text)["error"]["message"]))
 
 
 def getMediaUrl(audio_preview_url):
