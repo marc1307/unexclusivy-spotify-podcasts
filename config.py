@@ -14,7 +14,7 @@ def readToken():
             token = json.load(file)
     except FileNotFoundError:
         exit('ERROR: token.json not found')
-    return token['token']
+    return token['access_token']
 
 def debug():
     return True
