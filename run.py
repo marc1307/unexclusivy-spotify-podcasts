@@ -7,14 +7,7 @@ def getShows():
     cfg = config.readCfg()
     for showId in cfg['shows']:
         show = spotify.getShow(showId)
-
-        if config.debug():
-            print(show["name"])
-            print(show["description"])
-        
-
         eps = show["episodes"]["items"]
-
         p = Podcast(
             name=show["name"],
             description=show["description"],
@@ -26,7 +19,6 @@ def getShows():
         )
 
         for ep in eps:
-            print(ep["name"])
             p.episodes += [
                 Episode(
                     id=ep["uri"],
@@ -41,13 +33,8 @@ def getShows():
                 )
             ]
 
-
         write("{}/{}.xml".format(cfg['export'], showId), p.rss_str())
-        #print(json.dumps(eps, indent=4))
-
-
-        
-        
+ 
 def write(filename, content):
     f = open(filename, "w")
     f.write(content)
