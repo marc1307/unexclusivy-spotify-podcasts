@@ -1,4 +1,4 @@
-import config
+import config, auth
 import requests, json
 
 baseUrl = 'https://api.spotify.com/v1'
@@ -14,21 +14,26 @@ def buildHeaders():
 
 def getShow(showId):
     cfg = config.readCfg()
-    url = baseUrl+"/shows/{}".format(showId)
-    if config.debug():
-        print("DEBUG: getShow() - URL {}".format(url))
+    url = baseUrl+"/shows/{}?market={}".format(showId, cfg["market"])
     headers = buildHeaders()
     response = requests.request("GET", url, headers=headers)
     if response.status_code == 200:
         return json.loads(response.text)
+    elif response.status_code == 401:
+        error = json.loads(response.text)["error"]["message"]
+        if error == "The access token expired":
+            print("INFO: Token refresh required")
+            auth.getApiToken()
+            headers = buildHeaders()
+            response = requests.request("GET", url, headers=headers)
+            if response.status_code == 200:
+                return json.loads(response.text)
     else:
         exit("Meh... {} ({})".format(response.status_code, json.loads(response.text)["error"]["message"]))
 
 def getShowEpisodes(showId):
     cfg = config.readCfg()
     url = baseUrl+"/shows/{}/episodes".format(showId)
-    if config.debug():
-        print("DEBUG: getShowEpisodes() - URL {}".format(url))
     headers = buildHeaders()
     response = requests.request("GET", url, headers=headers)
     if response.status_code == 200:
@@ -36,10 +41,8 @@ def getShowEpisodes(showId):
     else:
         exit("Meh... {} ({})".format(response.status_code, json.loads(response.text)["error"]["message"]))
 
-
 def getMediaUrl(audio_preview_url):
     base = "https://anon-podcast.scdn.co/"
-    fileId = audio_preview_url.rsplit('/', 1)[1] 
+    fileId = audio_preview_url.rsplit('/', 1)[1]
     out = base + fileId
     return out
-    
