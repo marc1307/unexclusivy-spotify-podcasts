@@ -1,4 +1,4 @@
-import sys, requests, base64, json
+import sys, requests, base64, json, os
 import config
 
 from requests.auth import HTTPBasicAuth
@@ -22,7 +22,7 @@ def getApiUserToken(code):
     response = requests.post(base, data=data, auth=HTTPBasicAuth(cfg['api']['client_id'], cfg['api']['client_secret']))
     
     if response.status_code == 200:
-        f = open("token.json", "w")
+        f = open(os.path.dirname(os.path.realpath(__file__))+"token.json", "w")
         f.write(response.text)
         f.close()
         print('INFO: token.json has been successfully written')
@@ -41,7 +41,7 @@ def refreshApiToken():
     response = requests.post(base, data=data, auth=HTTPBasicAuth(cfg['api']['client_id'], cfg['api']['client_secret']))
     
     if response.status_code == 200:
-        f = open("token.json", "w")
+        f = open(os.path.dirname(os.path.realpath(__file__))+"token.json", "w")
         f.write(response.text)
         f.close()
         print('INFO: token.json has been successfully updated')
@@ -59,7 +59,7 @@ def getApiToken():
     response = requests.post(base, data=data, auth=HTTPBasicAuth(cfg['api']['client_id'], cfg['api']['client_secret']))
     
     if response.status_code == 200:
-        f = open("token.json", "w")
+        f = open(os.path.dirname(os.path.realpath(__file__))+"token.json", "w")
         f.write(response.text)
         f.close()
         print('INFO: token.json has been successfully written')
