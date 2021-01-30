@@ -8,5 +8,9 @@
         "3RWaVT0v1SK6iALTtUK8bQ",
         "7BTOsF2boKmlYr76BelijW"
     ],
-    "market": "EN"
+    "market": "EN",
+    "spotify": {
+        "mediaBaseURL": "https://anon-podcast.scdn.co/",
+        "mediaFileExtension": ""
+    }
 }

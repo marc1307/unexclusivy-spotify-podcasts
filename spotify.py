@@ -42,7 +42,9 @@ def getShowEpisodes(showId):
         exit("Meh... {} ({})".format(response.status_code, json.loads(response.text)["error"]["message"]))
 
 def getMediaUrl(audio_preview_url):
-    base = "https://anon-podcast.scdn.co/"
+    cfg = config.readCfg()
+    base = cfg["spotify"]["mediaBaseURL"]
+    ext = cfg["spotify"]["mediaFileExtension"]
     fileId = audio_preview_url.rsplit('/', 1)[1]
-    out = base + fileId
+    out = base + fileId + ext
     return out
