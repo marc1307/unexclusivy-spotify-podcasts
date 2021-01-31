@@ -26,7 +26,7 @@ def getShows():
                     title=ep["name"],
                     summary=ep["description"],
                     subtitle=ep["description"],
-                    media=Media(spotify.getMediaUrl(ep["audio_preview_url"]), type="audio/mpeg", duration=datetime.timedelta(milliseconds=ep["duration_ms"])),
+                    media=Media(spotify.getMediaUrl(ep["audio_preview_url"]), size=spotify.getMediaSize(ep["audio_preview_url"]), type="audio/mpeg", duration=datetime.timedelta(milliseconds=ep["duration_ms"])),
                     image=ep["images"][0]["url"],
                     explicit=ep["explicit"],
                     publication_date=datetime.datetime.strptime(ep["release_date"], "%Y-%m-%d").replace(tzinfo=datetime.timezone.utc)

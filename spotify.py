@@ -1,5 +1,5 @@
 import config, auth
-import requests, json
+import requests, json, os
 
 baseUrl = 'https://api.spotify.com/v1'
 
@@ -48,3 +48,29 @@ def getMediaUrl(audio_preview_url):
     fileId = audio_preview_url.rsplit('/', 1)[1]
     out = base + fileId + ext
     return out
+
+def getMediaSize(audio_preview_url):
+    fileId = audio_preview_url.rsplit('/', 1)[1]
+    mediaUrl = "https://anon-podcast.scdn.co/{}".format(fileId)
+    # Check Cache
+    try:
+        f=open(os.path.dirname(os.path.realpath(__file__))+'/cache.txt', 'r')
+    except FileNotFoundError:
+        f=open(os.path.dirname(os.path.realpath(__file__))+'/cache.txt', 'w+')
+
+    # check cache
+    lines = f.readlines()
+    for x in lines:
+        if x.startswith(fileId):
+            length = x.split("|")[1]
+            found = True
+            # found in cache
+            return length
+    # not found in cache
+    f.close
+    response = requests.head(mediaUrl)
+    length = response.headers["Content-Length"]
+    f=open(os.path.dirname(os.path.realpath(__file__))+'/cache.txt', 'a')
+    f.write("{}|{}\n".format(fileId, length)) # write to cache
+    f.close
+    return length
