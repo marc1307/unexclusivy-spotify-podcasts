@@ -1,9 +1,9 @@
 # unexclusivy-spotify-podcasts
-Generates a RSS Feed that can be subscribed in any podcast app
+Generates a RSS feed that can be subscribed in your favorite podcast app
 
 How to run:
 -----------
-## Install
+### Install
 ```
 ~/unexclusivy-spotify-podcasts$ python3 -m venv env
 ~/unexclusivy-spotify-podcasts$ source env/bin/activate
@@ -28,7 +28,6 @@ INFO: token.json has been successfully written
 
 Known Issues:
 -------------
-- Spotify API does not provide file size for Media
 - Media URLs don't have file extension ->  Apple Podcasts will fail to download the episodes (streaming still works)
 ```
 error	10:50:58.255959+0100	Podcasts	Validation failed with error Invalid asset: The original extension and resolved extension were not playable for episode url Optional(https://anon-podcast.scdn.co/099169162529dd064475edb69b80f979fa6c8d76)
