@@ -28,6 +28,6 @@ INFO: token.json has been successfully written
 
 Known Issues:
 -------------
-- Media URLs don't have file extensions ->  Apple Podcasts will fail to download the episodes (streaming still works) -> [Fix](../blob/master/docs/ApplePodcasts_Fix/README.md)
+- Media URLs don't have file extensions ->  Apple Podcasts will fail to download the episodes (streaming still works) -> [Fix](../master/docs/ApplePodcasts_Fix/README.md)
 
 ###### _Spotify® is a trademark of Spotify AB which does not sponsor, authorize, or endorse this project._
