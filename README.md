@@ -1,5 +1,5 @@
 # unexclusivy-spotify-podcasts
-Generates a RSS feed that can be subscribed in your favorite podcast app
+Generates an RSS feed that can be subscribed in your favorite podcast app
 
 How to run:
 -----------
@@ -28,11 +28,6 @@ INFO: token.json has been successfully written
 
 Known Issues:
 -------------
-- Media URLs don't have file extension ->  Apple Podcasts will fail to download the episodes (streaming still works)
-```
-error	10:50:58.255959+0100	Podcasts	Validation failed with error Invalid asset: The original extension and resolved extension were not playable for episode url Optional(https://anon-podcast.scdn.co/099169162529dd064475edb69b80f979fa6c8d76)
-default	10:50:58.255987+0100	Podcasts	Post download file validation failed, error: Invalid asset: The original extension and resolved extension were not playable for episode url Optional(https://anon-podcast.scdn.co/099169162529dd064475edb69b80f979fa6c8d76)
-error	10:50:58.257960+0100	Podcasts	Download failed due to error: Invalid asset: The original extension and resolved extension were not playable for episode url Optional(https://anon-podcast.scdn.co/099169162529dd064475edb69b80f979fa6c8d76).
-```
+- Media URLs don't have file extensions ->  Apple Podcasts will fail to download the episodes (streaming still works) -> [Fix](../blob/master/docs/ApplePodcasts_Fix/README.md)
 
 ###### _Spotify® is a trademark of Spotify AB which does not sponsor, authorize, or endorse this project._
