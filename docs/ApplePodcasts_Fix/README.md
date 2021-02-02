@@ -46,7 +46,7 @@ add responder policy resp_pol_dl-proxy_dropInvalidRequests "http.REQ.URL.EQ(\"/\
 add server EXT_tm_srv-anon-podcast.scdn.co anon-podcast.scdn.co
 
 # add service
-add service EXT_tm_lb_src-anon-podcast.scdn.co XT_tm_srv-anon-podcast.scdn.co SSL 443 -gslb NONE -maxClient 0 -maxReq 0 -cip DISABLED -usip NO -useproxyport YES -sp OFF -cltTimeout 180 -svrTimeout 360 -CKA NO -TCPB NO -CMP NO
+add service EXT_tm_lb_src-anon-podcast.scdn.co EXT_tm_srv-anon-podcast.scdn.co SSL 443 -gslb NONE -maxClient 0 -maxReq 0 -cip DISABLED -usip NO -useproxyport YES -sp OFF -cltTimeout 180 -svrTimeout 360 -CKA NO -TCPB NO -CMP NO
 
 # add vserver
 add lb vserver EXT_tm_lb_srv-anon-podcast.scdn.co HTTP 0.0.0.0 0 -persistenceType NONE -cltTimeout 180
